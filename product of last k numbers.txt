@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+
+class ProductOfNumbers {
+    private ArrayList<Integer> prefixProducts;
+
+    public ProductOfNumbers() {
+        prefixProducts = new ArrayList<>();
+        prefixProducts.add(1); // Initial dummy value to simplify calculations
+    }
+    
+    public void add(int num) {
+        if (num == 0) {
+            prefixProducts.clear();
+            prefixProducts.add(1); // Reset due to zero
+        } else {
+            prefixProducts.add(prefixProducts.get(prefixProducts.size() - 1) * num);
+        }
+    }
+    
+    public int getProduct(int k) {
+        int size = prefixProducts.size();
+        if (k >= size) return 0; // Zero was encountered in the last k elements
+        return prefixProducts.get(size - 1) / prefixProducts.get(size - 1 - k);
+    }
+}
